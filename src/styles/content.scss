@@ -18,6 +18,18 @@ header {
   span {
     color: var(--white);
   }
+
+  span.total {
+    display: block;
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray);
+
+    span {
+      color: var(--white);
+    }
+  }
 }
 
 main {

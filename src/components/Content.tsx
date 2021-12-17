@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { MovieCard } from './MovieCard';
 
@@ -43,14 +43,23 @@ export function Content({selectedGenreId} : ContentProps) {
     })
   }, [selectedGenreId]);
 
+  const totalMovies = useMemo(() => {
+    return movies.reduce((total) => {
+      return total + 1
+    }, 0)
+  }, [movies])
+
   return (
       <div className="container">
         <header>
           <span className="category">Categoria:<span> {selectedGenre.title}</span></span>
+          <span className="total">Total de filmes encontrados:<span> {totalMovies}</span></span>
         </header>
 
         <main>
+          
           <div className="movies-list">
+
             {movies.map(movie => (
               <MovieCard key ={movie.imdbID} title={movie.Title} poster={movie.Poster} runtime={movie.Runtime} rating={movie.Ratings[0].Value} />
             ))}
